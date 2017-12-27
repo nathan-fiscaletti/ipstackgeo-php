@@ -9,6 +9,8 @@
 [![Latest Unstable Version](https://poser.pugx.org/nafisc/freegeoip-php/v/unstable?format=flat)](https://packagist.org/packages/nafisc/freegeoip-php)
 [![License](https://poser.pugx.org/nafisc/freegeoip-php/license?format=flat)](https://packagist.org/packages/nafisc/freegeoip-php)
 
+Learn more about FreeGeoIP here: [freegeoip.net](http://freegeoip.net)
+
 ### Features
 * Retrieve the Geo Location data for any IP address.
 * Link to a custom freegeoip server
