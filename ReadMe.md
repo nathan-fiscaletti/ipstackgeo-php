@@ -1,6 +1,6 @@
 # FreeGeoIp for PHP
 > **FreeGeoIp for PHP** is a simple library used to interface with a freegeoip API.
-
+>
 > **Hint**: FreeGeoIp for PHP is available through [Composer](https://getcomposer.org). `composer require nafisc/freegeoip-php`.
 
 [![StyleCI](https://styleci.io/repos/115560334/shield?style=flat)](https://styleci.io/repos/115560334)
