@@ -2,6 +2,7 @@
     "name": "nafisc/freegeoip-php",
     "description": "A PHP library for interfacing with freegeoip APIs",
     "type": "library",
+    "version":"1.0",
     "autoload": {
         "psr-4": {
             "FreeGeoIp\\PHP\\": "src/FreeGeoIp"
