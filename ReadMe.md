@@ -43,6 +43,10 @@ try {
     // or IP addresses.
     $location = $freeGeoIp->getLocationFor('github.com');
 
+    // You can alternately look up the information
+    // for the current client's IP address.
+    $location = $freeGeoIp->getClientLocation();
+
     // If we are unable to retrieve the location information
     // for an IP address, null will be returned.
     if ($location == null) {
