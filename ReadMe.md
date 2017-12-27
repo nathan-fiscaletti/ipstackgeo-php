@@ -39,6 +39,11 @@ $freeGeoIp = new FreeGeoIp(
 ```
 
 #### Lookup a location for an IP Address
+
+> Note: Locations are returned using a library called ExtendedArrays.
+> This library gives us more options on how we access the properties of the location.
+> See [Acessing Array Elements Documentation](https://github.com/nathan-fiscaletti/extended-arrays/blob/master/Examples/Managing%20Arrays.md#accessing-array-elements) of the ExtendedArrays documentation for more information on this.
+
 ```php
 // Lookup a location for an IP Address
 // and catch any exceptions that might
@@ -68,6 +73,8 @@ try {
         //
         // See \FreeGeoIp\PHP\Location for a
         // list of available properties.
+        //
+        //
         echo $location->latitude . PHP_EOL;
         echo $location['longitude'] . PHP_EOL;
         echo $location->region_name() . PHP_EOL;
