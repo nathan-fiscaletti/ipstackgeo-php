@@ -22,6 +22,6 @@ class Location extends AssocArr
         'time_zone',
         'latitude',
         'longitude',
-        'metro_code'
+        'metro_code',
     ];
 }

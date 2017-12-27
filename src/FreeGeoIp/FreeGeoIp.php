@@ -27,7 +27,7 @@ class FreeGeoIp
 
     /**
      * Construct the FreeGeoIp object with server information.
-     * Defaults to freegeoip.net
+     * Defaults to freegeoip.net.
      *
      * @param string      $server_address
      * @param int         $server_port
@@ -35,10 +35,10 @@ class FreeGeoIp
      * @param int         $timeout
      */
     public function __construct(
-        string $server_address  = 'freegeoip.net',
-        int    $server_port     = 80,
+        string $server_address = 'freegeoip.net',
+        int    $server_port = 80,
         string $server_protocol = 'http',
-        int    $timeout         = 10
+        int    $timeout = 10
     ) {
         $this->server_url = $server_protocol.'://'
         .$server_address.':'.$server_port.'/';
@@ -60,13 +60,12 @@ class FreeGeoIp
         try {
             $response = (new Client([
                 'base_uri' => $this->server_url,
-                'timeout' => $this->timeout
+                'timeout' => $this->timeout,
             ]))->get('json/'.$ip);
 
             if ($response->getStatusCode() == 200) {
                 $ret = new Location(json_decode(
-                    $response->getBody()->getContents()
-                , true));
+                    $response->getBody()->getContents(), true));
             }
         } catch (\Exception $e) {
             throw $e;
