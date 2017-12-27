@@ -3,6 +3,12 @@
 
 > **Hint**: FreeGeoIp for PHP is available through [Composer](https://getcomposer.org). `composer require nafisc/freegeoip-php`.
 
+[![StyleCI](https://styleci.io/repos/115560334/shield?style=flat)](https://styleci.io/repos/115560334)
+[![Latest Stable Version](https://poser.pugx.org/nafisc/freegeoip-php/v/stable?format=flat)](https://packagist.org/packages/nafisc/freegeoip-php)
+[![Total Downloads](https://poser.pugx.org/nafisc/freegeoip-php/downloads?format=flat)](https://packagist.org/packages/nafisc/freegeoip-php)
+[![Latest Unstable Version](https://poser.pugx.org/nafisc/freegeoip-php/v/unstable?format=flat)](https://packagist.org/packages/nafisc/freegeoip-php)
+[![License](https://poser.pugx.org/nafisc/freegeoip-php/license?format=flat)](https://packagist.org/packages/nafisc/freegeoip-php)
+
 ### Features
 * Retrieve the Geo Location data for any IP address.
 * Link to a custom freegeoip server
