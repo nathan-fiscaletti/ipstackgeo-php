@@ -28,7 +28,7 @@ This will default to `freegeoip.net`.
 > Note: From the freegeoip.net web page:
 > You're allowed up to 15,000 queries per hour by default. Once this limit is reached, all of your requests will result in HTTP 403, forbidden, until your quota is cleared.
 >
->The freegeoip web server is free and open source so if the public service limit is a problem for you, download it and run your own instance.
+>The freegeoip web server is free and open source so if the public service limit is a problem for you, [download it](https://github.com/fiorix/freegeoip/releases/) and run your own instance.
 ```php
 $freeGeoIp = new FreeGeoIp();
 ```
