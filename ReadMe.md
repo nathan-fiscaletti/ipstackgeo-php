@@ -74,11 +74,6 @@ try {
 
         // Any of these formats will work for 
         // retrieving a property.
-        //
-        // See \FreeGeoIp\PHP\Location for a
-        // list of available properties.
-        //
-        //
         echo $location->latitude . PHP_EOL;
         echo $location['longitude'] . PHP_EOL;
         echo $location->region_name() . PHP_EOL;
@@ -87,3 +82,5 @@ try {
     echo $e->getMessage();
 }
 ```
+
+> Note: See [Location.php](https://github.com/nathan-fiscaletti/freegeoip-php/blob/master/src/FreeGeoIp/Location.php) for a list of available properties on the Location object.
