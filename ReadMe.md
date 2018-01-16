@@ -15,10 +15,6 @@ Learn more about FreeGeoIP here: [freegeoip.net](http://freegeoip.net)
 * Retrieve the Geo Location data for any IP address.
 * Link to a custom freegeoip server
 
-### Testing
-
-This build comes with full phpunit support.
-
 ### Example Usage
 
 #### Include the `FreeGeoIp` class in your code.
