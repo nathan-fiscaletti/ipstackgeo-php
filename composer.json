@@ -2,21 +2,31 @@
     "name": "nafisc/freegeoip-php",
     "description": "A PHP library for interfacing with freegeoip APIs",
     "type": "library",
-    "autoload": {
-        "psr-4": {
-            "FreeGeoIp\\PHP\\": "src/FreeGeoIp"
-        }
-    },
-    "require": {
-        "guzzlehttp/guzzle": "^6.3",
-        "nafisc/extended-arrays": "^1.3",
-        "tixastronauta/acc-ip": "^1.1"
-    },
     "license": "MIT",
     "authors": [
         {
             "name": "Nathan Fiscaletti",
             "email": "nathhan.fiscaletti@gmail.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "FreeGeoIp\\PHP\\": "src/FreeGeoIp"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "FreeGeoIp\\PHP\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=7.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "nafisc/extended-arrays": "^1.3",
+        "tixastronauta/acc-ip": "^1.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "6.*.*",
+        "ext-mbstring": "*.*"
+    }
 }
