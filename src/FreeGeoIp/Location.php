@@ -2,9 +2,9 @@
 
 namespace FreeGeoIp\PHP;
 
-use ExtendedArrays\AssociativeArray as AssocArr;
+use ExtendedArrays\ReadOnlyRestrictedAssociativeArray as ReadOnlyResAssocArr;
 
-class Location extends AssocArr
+class Location extends ReadOnlyResAssocArr
 {
     /**
      * Fillable properties of the object.
