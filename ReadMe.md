@@ -4,11 +4,11 @@
 > **Hint**: IPStack for PHP is available through [Composer](https://getcomposer.org). `composer require nafisc/ipstackgeo-php`.
 
 [![StyleCI](https://styleci.io/repos/115560334/shield?style=flat)](https://styleci.io/repos/115560334)
-[![TravisCI](https://travis-ci.org/nathan-fiscaletti/freegeoip-php.svg?branch=master)](https://travis-ci.org/nathan-fiscaletti/freegeoip-php)
-[![Latest Stable Version](https://poser.pugx.org/nafisc/freegeoip-php/v/stable?format=flat)](https://packagist.org/packages/nafisc/freegeoip-php)
-[![Total Downloads](https://poser.pugx.org/nafisc/freegeoip-php/downloads?format=flat)](https://packagist.org/packages/nafisc/freegeoip-php)
-[![Latest Unstable Version](https://poser.pugx.org/nafisc/freegeoip-php/v/unstable?format=flat)](https://packagist.org/packages/nafisc/freegeoip-php)
-[![License](https://poser.pugx.org/nafisc/freegeoip-php/license?format=flat)](https://packagist.org/packages/nafisc/freegeoip-php)
+[![TravisCI](https://travis-ci.org/nathan-fiscaletti/ipstackgeo-php.svg?branch=master)](https://travis-ci.org/nathan-fiscaletti/ipstackgeo-php)
+[![Latest Stable Version](https://poser.pugx.org/nafisc/ipstackgeo-php/v/stable?format=flat)](https://packagist.org/packages/nafisc/ipstackgeo-php)
+[![Total Downloads](https://poser.pugx.org/nafisc/ipstackgeo-php/downloads?format=flat)](https://packagist.org/packages/nafisc/ipstackgeo-php)
+[![Latest Unstable Version](https://poser.pugx.org/nafisc/ipstackgeo-php/v/unstable?format=flat)](https://packagist.org/packages/nafisc/ipstackgeo-php)
+[![License](https://poser.pugx.org/nafisc/ipstackgeo-php/license?format=flat)](https://packagist.org/packages/nafisc/ipstackgeo-php)
 
 Learn more about IPStack here: [ipstack.net](https://ipstack.com/product)
 
@@ -60,7 +60,7 @@ $geoLookup = new GeoLookup(
 ```php
 // Lookup a location for an IP Address
 // and catch any exceptions that might
-// be thrown by Guzzle or FreeGeoIP.
+// be thrown by Guzzle or IPStack.
 try {
     // Retrieve the location information for 
     // github.com by using it's hostname.
@@ -92,4 +92,4 @@ try {
 }
 ```
 
-> Note: See [Location.php](https://github.com/nathan-fiscaletti/freegeoip-php/blob/master/src/FreeGeoIp/Location.php) for a list of available properties on the Location object.
+> Note: See [Location.php](https://github.com/nathan-fiscaletti/ipstackgeo-php/blob/v1.3/src/IPStack/Location.php) for a list of available properties on the Location object.
