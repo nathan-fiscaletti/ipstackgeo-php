@@ -68,10 +68,10 @@ class GeoLookup
             $response = (new Client([
                 'base_uri' => (
                     ($this->use_https)
-                        ?'https'
-                        :'http'
+                        ? 'https'
+                        : 'http'
                 ).'://api.ipstack.com/',
-                'timeout' => $this->timeout
+                'timeout' => $this->timeout,
             ]))->get($ip.'?access_key='.$this->api_key.'&output=json');
 
             if ($response->getStatusCode() == 200) {

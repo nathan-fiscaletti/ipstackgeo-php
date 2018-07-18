@@ -45,6 +45,7 @@ class FreeGeoIp
         .$server_address.':'.$server_port.'/';
         $this->timeout = $timeout;
     }
+
     /**
      * Retrieve a location for a specific IP address.
      *
@@ -70,6 +71,7 @@ class FreeGeoIp
         }
         return $ret;
     }
+
     /**
      * Returns a location for the current clients IP address.
      *
