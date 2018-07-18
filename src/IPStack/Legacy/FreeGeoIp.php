@@ -1,8 +1,9 @@
 <?php
 
-namespace FreeGeoIp\PHP;
+namespace IPStack\PHP\Legacy;
 
 use GuzzleHttp\Client;
+use IPStack\PHP\Location;
 use TixAstronauta\AccIp\AccIp;
 
 /**
@@ -35,8 +36,8 @@ class FreeGeoIp
      * @param int         $timeout
      */
     public function __construct(
-        string $server_address = 'freegeoip.net',
-        int    $server_port = 80,
+        string $server_address,
+        int    $server_port = 8080,
         string $server_protocol = 'http',
         int    $timeout = 10
     ) {
@@ -44,7 +45,6 @@ class FreeGeoIp
         .$server_address.':'.$server_port.'/';
         $this->timeout = $timeout;
     }
-
     /**
      * Retrieve a location for a specific IP address.
      *
@@ -56,13 +56,11 @@ class FreeGeoIp
     public function getLocationFor(string $ip)
     {
         $ret = null;
-
         try {
             $response = (new Client([
                 'base_uri' => $this->server_url,
                 'timeout' => $this->timeout,
             ]))->get('json/'.$ip);
-
             if ($response->getStatusCode() == 200) {
                 $ret = new Location(json_decode(
                     $response->getBody()->getContents(), true));
@@ -70,10 +68,8 @@ class FreeGeoIp
         } catch (\Exception $e) {
             throw $e;
         }
-
         return $ret;
     }
-
     /**
      * Returns a location for the current clients IP address.
      *
@@ -84,11 +80,9 @@ class FreeGeoIp
     {
         $accIp = new AccIp();
         $ip = $accIp->getIpAddress();
-
         if ($ip === false) {
             throw new \Exception('Unable to find client IP address.');
         }
-
         return $this->getLocationFor($ip);
     }
 }
