@@ -18,6 +18,8 @@ Learn more about IPStack here: [ipstack.net](https://ipstack.com/product)
 
 ### Example Usage
 
+> Note: See [Location.php](https://github.com/nathan-fiscaletti/ipstackgeo-php/blob/v1.3/src/IPStack/Location.php) for a list of available properties on the Location object.
+
 #### Create the GeoLookup object
 
 ```php
@@ -87,5 +89,3 @@ $geoLookup = new GeoLookup(
     10           // Timeout (defaults to 10 seconds)
 );
 ```
-
-> Note: See [Location.php](https://github.com/nathan-fiscaletti/ipstackgeo-php/blob/v1.3/src/IPStack/Location.php) for a list of available properties on the Location object.
