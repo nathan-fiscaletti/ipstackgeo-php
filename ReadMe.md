@@ -18,36 +18,15 @@ Learn more about IPStack here: [ipstack.net](https://ipstack.com/product)
 
 ### Example Usage
 
-#### Include the `GeoLookup` class in your code.
-```php
-use IPStack\PHP\GeoLookup;
-```
-
 #### Create the GeoLookup object
 
 ```php
-// Initialize with your IPStack API Key.
+use IPStack\PHP\GeoLookup;
+
 $geoLookup = new GeoLookup(
     'acecac3893c90871c3', // API Key
     false,                // Use HTTPS (IPStack Basic plan and up only, defaults to false)
     10                    // Timeout in seconds (defaults to 10 seconds)
-);
-```
-
-#### Using the the Legacy [FreeGeoIP Binary](https://github.com/fiorix/freegeoip/releases/)
-
-You can still use the legacy FreeGeoIP Binary hosted on a server
-> Note: [FreeGeoIP has been deprecated](https://github.com/apilayer/freegeoip/#freegeoip---important-announcement).
-
-```php
-use IPStack\Legacy\FreeGeoIp as GeoLookup;
-
-// Address, Port, Protocol, Timeout
-$geoLookup = new GeoLookup(
-    'localhost', // Address hosting the legacy FreeGeoIP Binary
-    8080,        // Port that the binary is running on (defaults to 8080)
-    'http',      // Protocol to use (defaults to http)
-    10           // Timeout (defaults to 10 seconds)
 );
 ```
 
@@ -90,6 +69,23 @@ try {
 } catch (\Exception $e) {
     echo $e->getMessage();
 }
+```
+
+#### Using the the Legacy [FreeGeoIP Binary](https://github.com/fiorix/freegeoip/releases/)
+
+You can still use the legacy FreeGeoIP Binary hosted on a server
+> Note: [FreeGeoIP has been deprecated](https://github.com/apilayer/freegeoip/#freegeoip---important-announcement).
+
+```php
+use IPStack\Legacy\FreeGeoIp as GeoLookup;
+
+// Address, Port, Protocol, Timeout
+$geoLookup = new GeoLookup(
+    'localhost', // Address hosting the legacy FreeGeoIP Binary
+    8080,        // Port that the binary is running on (defaults to 8080)
+    'http',      // Protocol to use (defaults to http)
+    10           // Timeout (defaults to 10 seconds)
+);
 ```
 
 > Note: See [Location.php](https://github.com/nathan-fiscaletti/ipstackgeo-php/blob/v1.3/src/IPStack/Location.php) for a list of available properties on the Location object.
