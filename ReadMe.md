@@ -1,7 +1,7 @@
-# FreeGeoIp for PHP
-> **FreeGeoIp for PHP** is a simple library used to interface with a freegeoip API.
+# IPStack for PHP (Geo Location Library)
+> **IPStack for PHP** is a simple library used to interface with an IPStack Geo API.
 >
-> **Hint**: FreeGeoIp for PHP is available through [Composer](https://getcomposer.org). `composer require nafisc/freegeoip-php`.
+> **Hint**: IPStack for PHP is available through [Composer](https://getcomposer.org). `composer require nafisc/ipstackgeo-php`.
 
 [![StyleCI](https://styleci.io/repos/115560334/shield?style=flat)](https://styleci.io/repos/115560334)
 [![TravisCI](https://travis-ci.org/nathan-fiscaletti/freegeoip-php.svg?branch=master)](https://travis-ci.org/nathan-fiscaletti/freegeoip-php)
@@ -10,36 +10,44 @@
 [![Latest Unstable Version](https://poser.pugx.org/nafisc/freegeoip-php/v/unstable?format=flat)](https://packagist.org/packages/nafisc/freegeoip-php)
 [![License](https://poser.pugx.org/nafisc/freegeoip-php/license?format=flat)](https://packagist.org/packages/nafisc/freegeoip-php)
 
-Learn more about FreeGeoIP here: [freegeoip.net](http://freegeoip.net)
+Learn more about IPStack here: [ipstack.net](https://ipstack.com/product)
 
 ### Features
 * Retrieve the Geo Location data for any IP address.
-* Link to a custom freegeoip server
+* Link to a custom ipstack server
 
 ### Example Usage
 
-#### Include the `FreeGeoIp` class in your code.
+#### Include the `GeoLookup` class in your code.
 ```php
-use FreeGeoIp\PHP\FreeGeoIp;
+use IPStack\PHP\GeoLookup;
 ```
 
-#### Create the FreeGeoIp object
+#### Create the GeoLookup object
 
-This will default to `freegeoip.net`.
-> Note: From the freegeoip.net web page:
-> You're allowed up to 15,000 queries per hour by default. Once this limit is reached, all of your requests will result in HTTP 403, forbidden, until your quota is cleared.
->
->The freegeoip web server is free and open source so if the public service limit is a problem for you, [download it](https://github.com/fiorix/freegeoip/releases/) and run your own instance.
 ```php
-$freeGeoIp = new FreeGeoIp();
+// Initialize with your IPStack API Key.
+$geoLookup = new GeoLookup(
+    'acecac3893c90871c3', // API Key
+    false,                // Use HTTPS (IPStack Basic plan and up only, defaults to false)
+    10                    // Timeout in seconds (defaults to 10 seconds)
+);
 ```
 
-Alternately, you can pass it a custom server configuration if you are using the freegeoip binary.
+#### Using the the Legacy [FreeGeoIP Binary](https://github.com/fiorix/freegeoip/releases/)
+
+You can still use the legacy FreeGeoIP Binary hosted on a server
+> Note: [FreeGeoIP has been deprecated](https://github.com/apilayer/freegeoip/#freegeoip---important-announcement).
+
 ```php
+use IPStack\Legacy\FreeGeoIp as GeoLookup;
+
 // Address, Port, Protocol, Timeout
-$freeGeoIp = new FreeGeoIp(
-    'freegeoip.net', 80,
-    'http', 10
+$geoLookup = new GeoLookup(
+    'localhost', // Address hosting the legacy FreeGeoIP Binary
+    8080,        // Port that the binary is running on (defaults to 8080)
+    'http',      // Protocol to use (defaults to http)
+    10           // Timeout (defaults to 10 seconds)
 );
 ```
 
@@ -59,11 +67,11 @@ try {
     // 
     // This function will work with hostnames
     // or IP addresses.
-    $location = $freeGeoIp->getLocationFor('github.com');
+    $location = $geoLookup->getLocationFor('github.com');
 
     // You can alternately look up the information
     // for the current client's IP address.
-    $location = $freeGeoIp->getClientLocation();
+    $location = $geoLookup->getClientLocation();
 
     // If we are unable to retrieve the location information
     // for an IP address, null will be returned.
