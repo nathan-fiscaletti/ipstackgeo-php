@@ -4,7 +4,7 @@
 > **Hint**: IPStack for PHP is available through [Composer](https://getcomposer.org). `composer require nafisc/ipstackgeo-php`.
 
 [![StyleCI](https://styleci.io/repos/115560334/shield?style=flat)](https://styleci.io/repos/115560334)
-[![TravisCI](https://travis-ci.org/nathan-fiscaletti/ipstackgeo-php.svg?branch=master)](https://travis-ci.org/nathan-fiscaletti/ipstackgeo-php)
+[![TravisCI](https://travis-ci.com/nathan-fiscaletti/ipstackgeo-php.svg?branch=master)](https://travis-ci.com/nathan-fiscaletti/ipstackgeo-php)
 [![Latest Stable Version](https://poser.pugx.org/nafisc/ipstackgeo-php/v/stable?format=flat)](https://packagist.org/packages/nafisc/ipstackgeo-php)
 [![Total Downloads](https://poser.pugx.org/nafisc/ipstackgeo-php/downloads?format=flat)](https://packagist.org/packages/nafisc/ipstackgeo-php)
 [![Latest Unstable Version](https://poser.pugx.org/nafisc/ipstackgeo-php/v/unstable?format=flat)](https://packagist.org/packages/nafisc/ipstackgeo-php)
