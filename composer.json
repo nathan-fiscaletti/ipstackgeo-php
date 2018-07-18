@@ -1,5 +1,5 @@
 {
-    "name": "nafisc/freegeoip-php",
+    "name": "nafisc/ipstackgeo-php",
     "description": "A PHP library for interfacing with freegeoip APIs",
     "type": "library",
     "license": "MIT",
@@ -11,12 +11,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "FreeGeoIp\\PHP\\": "src/FreeGeoIp"
+            "IPStack\\PHP\\": "src/IPStack"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "FreeGeoIp\\PHP\\Tests\\": "tests/"
+            "IPStack\\PHP\\Tests\\": "tests/"
         }
     },
     "require": {
