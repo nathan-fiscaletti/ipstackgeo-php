@@ -14,7 +14,7 @@ Learn more about IPStack here: [ipstack.net](https://ipstack.com/product)
 
 ### Features
 * Retrieve the Geo Location data for any IP address.
-* Link to a custom ipstack server
+* (Legacy) Link to a custom FreeGeoIP server
 
 ### Example Usage
 
