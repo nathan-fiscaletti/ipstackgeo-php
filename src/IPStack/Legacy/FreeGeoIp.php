@@ -69,6 +69,7 @@ class FreeGeoIp
         } catch (\Exception $e) {
             throw $e;
         }
+
         return $ret;
     }
 
@@ -85,6 +86,7 @@ class FreeGeoIp
         if ($ip === false) {
             throw new \Exception('Unable to find client IP address.');
         }
+
         return $this->getLocationFor($ip);
     }
 }
