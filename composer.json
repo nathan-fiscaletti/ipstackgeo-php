@@ -1,6 +1,6 @@
 {
     "name": "nafisc/ipstackgeo-php",
-    "description": "A PHP library for interfacing with freegeoip APIs",
+    "description": "A PHP library for interfacing with IPStack Geo API",
     "type": "library",
     "license": "MIT",
     "authors": [
