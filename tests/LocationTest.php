@@ -3,10 +3,10 @@
 namespace FreeGeoIp\PHP\Tests;
 
 use PHPUnit\Framework\TestCase;
-use FreeGeoIp\PHP\Location;
+use IPStack\PHP\Location;
 
 /**
- * @covers \FreeGeoIp\PHP\Location
+ * @covers \IPStack\PHP\Location
  */
 final class LocationTest extends TestCase {
     public function testIsReadOnly()
