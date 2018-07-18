@@ -13,7 +13,7 @@ class Location extends ReadOnlyResAssocArr
      */
     protected $fillable = [
 
-        // These properties are available on all 
+        // These properties are available on all
         // IPStack plans.
         'ip',
         'type',
@@ -44,6 +44,6 @@ class Location extends ReadOnlyResAssocArr
         // These properties are used when you are
         // using the legacy FreeGeoIp binary.
         'zip_code',
-        'metro_code'
+        'metro_code',
     ];
 }
