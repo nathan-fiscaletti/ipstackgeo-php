@@ -80,7 +80,7 @@ You can still use the legacy FreeGeoIP Binary hosted on a server
 > Note: [FreeGeoIP has been deprecated](https://github.com/apilayer/freegeoip/#freegeoip---important-announcement).
 
 ```php
-use IPStack\Legacy\FreeGeoIp as GeoLookup;
+use IPStack\PHP\Legacy\FreeGeoIp as GeoLookup;
 
 // Address, Port, Protocol, Timeout
 $geoLookup = new GeoLookup(
