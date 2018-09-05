@@ -1,10 +1,15 @@
 language: php
 php:
   - '7.0'
+  - '7.1'
+  - '7.2'
   - nightly
-before_script: composer install --dev && composer update
+matrix:
+  allow_failures:
+    - php: nightly
+before_script: composer install
 script:
-  - mkdir -p build/logs  
-  - ./vendor/bin/phpunit -c phpunit.xml
+  - mkdir -p build/logs
+  - ./vendor/bin/phpunit
 after_script:
   - php vendor/bin/php-coveralls -v
