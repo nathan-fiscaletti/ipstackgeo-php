@@ -8,7 +8,8 @@ use IPStack\PHP\Location;
 /**
  * @covers \IPStack\PHP\Location
  */
-final class LocationTest extends TestCase {
+final class LocationTest extends TestCase
+{
     public function testIsReadOnly()
     {
         $location = new Location([
@@ -28,7 +29,7 @@ final class LocationTest extends TestCase {
             'ip' => '127.0.0.1'
         ]);
 
-        $this->assertEquals($location->ip, '127.0.0.1');        
+        $this->assertEquals($location->ip, '127.0.0.1');
 
         // Verify that unfillable property is not
         $this->expectException(\Exception::class);
