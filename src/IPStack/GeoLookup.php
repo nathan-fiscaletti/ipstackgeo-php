@@ -6,7 +6,7 @@ use GuzzleHttp\Client;
 use TixAstronauta\AccIp\AccIp;
 
 /**
- * A PHP class for querying a FreeGeoIP server
+ * A PHP class for querying an IPStack server
  * for the Geo Location information of an IP.
  */
 class GeoLookup
@@ -37,9 +37,7 @@ class GeoLookup
      * Defaults to freegeoip.net.
      *
      * @param string      $api_key
-     * @param string      $server_address
-     * @param int         $server_port
-     * @param string      $server_protocol
+     * @param bool        $use_https
      * @param int         $timeout
      */
     public function __construct(
