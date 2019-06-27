@@ -89,4 +89,24 @@ class FreeGeoIp
 
         return $this->getLocationFor($ip);
     }
+
+    /**
+     * Retrieve the Server URL.
+     *
+     * @return string
+     */
+    public function getServerUrl()
+    {
+        return $this->server_url;
+    }
+
+    /**
+     * Retrieve the Timeout.
+     * 
+     * @return int
+     */
+    public function getTimeout()
+    {
+        return $this->timeout;
+    }
 }
