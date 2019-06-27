@@ -49,7 +49,7 @@ try {
     // 
     // This function will work with hostnames
     // or IP addresses.
-    $location = $geoLookup->getLocationFor('github.com');
+    $location = $geoLookup->getLocation('github.com');
 
     // You can alternately look up the information
     // for the current client's IP address.
