@@ -21,12 +21,12 @@ final class GeoLookupTest extends TestCase
 
 	public function testGetLocationWithHttpsForReturnsLocationObjectOnInvalidPlan()
 	{
-		$geo = new GeoLookup('d0164200acfaa5ad0a154d1a7398bc90', true);
+		$geo = new GeoLookup('d0164200acfaa5ad0a154d1a7398bc90');
 
 		$this->expectException(\Exception::class);
 		$this->expectExceptionMessage('Error: Access Restricted - Your current Subscription Plan does not support HTTPS Encryption.');
 
-		$location = $geo->getLocation('github.com');
+		$location = $geo->useHttps(true)->getLocation('github.com');
 
 		$this->assertInternalType('array', $location);
 	}
@@ -39,8 +39,6 @@ final class GeoLookupTest extends TestCase
 		$this->expectExceptionMessage('Error: Unable to find client IP address.');
 
 		$location = $geo->getClientLocation();
-
-		$this->assertInstanceOf(Location::class, $location);
     }
 
     public function testGetLocationsBulkRequestReturnsErrorOnMissingAPIPermissions()
@@ -68,5 +66,14 @@ final class GeoLookupTest extends TestCase
             $input[] = '1.1.1.1';
         }
         $location = $geo->getLocations(...$input);
+    }
+
+    public function testGetOwnLocationReturnsArray()
+    {
+        $geo = new GeoLookup('d0164200acfaa5ad0a154d1a7398bc90');
+
+		$location = $geo->getOwnLocation();
+
+		$this->assertInternalType('array', $location);
     }
 }
