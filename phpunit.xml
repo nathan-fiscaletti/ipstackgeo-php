@@ -22,6 +22,9 @@
         <whitelist>
             <directory suffix=".php">src</directory>
         </whitelist>
+        <exclude>
+            <file>src/IPStack/Legacy/FreeGeoIp.php</file>
+        </exclude>
     </filter>
 
     <logging>
