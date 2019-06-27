@@ -55,7 +55,7 @@ class GeoLookup
      *
      * @param  string $ip
      *
-     * @return \FreeGeoIp\PHP\Location|null
+     * @return array|null
      * @throws \Exception
      */
     public function getLocation(string $ip)
@@ -78,7 +78,7 @@ class GeoLookup
                     throw new \Exception('Error: '.$compiled['error']['info']);
                 }
 
-                $ret = new Location($compiled);
+                $ret = $compiled;
             }
         } catch (\Exception $e) {
             throw $e;
@@ -92,11 +92,15 @@ class GeoLookup
      *
      * @param string ...$ips The IP addresses.
      *
-     * @return \FreeGeoIp\PHP\Location|null
+     * @return array|null
      * @throws \Exception
      */
     public function getLocations(string ...$ips)
     {
+        if (\count($ips) > 50) {
+            throw new \Exception('Error: Bulk lookup limitted to 50 IP addresses at a time.');
+        }
+
         $ret = null;
 
         try {
@@ -115,7 +119,7 @@ class GeoLookup
                     throw new \Exception('Error: '.$compiled['error']['info']);
                 }
 
-                $ret = new Location($compiled);
+                $ret = $compiled;
             }
         } catch (\Exception $e) {
             throw $e;
