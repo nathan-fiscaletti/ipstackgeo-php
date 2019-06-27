@@ -75,8 +75,6 @@ class GeoLookup
      */
     public function getLocation(string $ip)
     {
-        $ret = null;
-
         try {
             $response = (new Client([
                 'base_uri' => (
@@ -93,12 +91,10 @@ class GeoLookup
                 '&language='.$this->language
             );
 
-            $ret = $this->processResponse($response);
+            return $this->processResponse($response);
         } catch (\Exception $e) {
             throw $e;
         }
-
-        return $ret;
     }
 
     /**
@@ -114,8 +110,6 @@ class GeoLookup
         if (\count($ips) > 50) {
             throw new \Exception('Error: Bulk lookup limitted to 50 IP addresses at a time.');
         }
-
-        $ret = null;
 
         try {
             $response = (new Client([
@@ -133,12 +127,10 @@ class GeoLookup
                 '&language='.$this->language
             );
 
-            $ret = $this->processResponse($response);
+            return $this->processResponse($response);
         } catch (\Exception $e) {
             throw $e;
         }
-
-        return $ret;
     }
 
     /**
@@ -149,8 +141,6 @@ class GeoLookup
      */
     public function getOwnLocation()
     {
-        $ret = null;
-
         try {
             $response = (new Client([
                 'base_uri' => (
@@ -167,12 +157,10 @@ class GeoLookup
                 '&language='.$this->language
             );
 
-            $ret = $this->processResponse($response);
+            return $this->processResponse($response);
         } catch (\Exception $e) {
             throw $e;
         }
-
-        return $ret;
     }
 
     /**
@@ -192,8 +180,6 @@ class GeoLookup
 
             return $compiled;
         }
-
-        return null;
     }
 
     /**
