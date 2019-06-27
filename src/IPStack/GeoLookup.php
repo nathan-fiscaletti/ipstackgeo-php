@@ -89,13 +89,14 @@ class GeoLookup
 
     /**
      * Retrieve the location information for a batch of IP addresses.
-     * 
+     *
      * @param string ...$ips The IP addresses.
-     * 
+     *
      * @return \FreeGeoIp\PHP\Location|null
      * @throws \Exception
      */
-    public function getLocations(string ...$ips) {
+    public function getLocations(string ...$ips)
+    {
         $ret = null;
 
         try {
