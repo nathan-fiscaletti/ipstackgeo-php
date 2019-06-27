@@ -58,7 +58,7 @@ class GeoLookup
      * @return \FreeGeoIp\PHP\Location|null
      * @throws \Exception
      */
-    public function getLocationFor(string $ip)
+    public function getLocation(string $ip)
     {
         $ret = null;
 
@@ -71,6 +71,43 @@ class GeoLookup
                 ).'://api.ipstack.com/',
                 'timeout' => $this->timeout,
             ]))->get($ip.'?access_key='.$this->api_key.'&output=json');
+
+            if ($response->getStatusCode() == 200) {
+                $compiled = json_decode($response->getBody()->getContents(), true);
+                if (array_key_exists('error', $compiled)) {
+                    throw new \Exception('Error: '.$compiled['error']['info']);
+                }
+
+                $ret = new Location($compiled);
+            }
+        } catch (\Exception $e) {
+            throw $e;
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Retrieve the location information for a batch of IP addresses.
+     *
+     * @param string ...$ips The IP addresses.
+     *
+     * @return \FreeGeoIp\PHP\Location|null
+     * @throws \Exception
+     */
+    public function getLocations(string ...$ips)
+    {
+        $ret = null;
+
+        try {
+            $response = (new Client([
+                'base_uri' => (
+                    ($this->use_https)
+                        ? 'https'
+                        : 'http'
+                ).'://api.ipstack.com/',
+                'timeout' => $this->timeout,
+            ]))->get(implode(',', $ips).'?access_key='.$this->api_key.'&output=json');
 
             if ($response->getStatusCode() == 200) {
                 $compiled = json_decode($response->getBody()->getContents(), true);
