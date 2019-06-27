@@ -102,7 +102,7 @@ class FreeGeoIp
 
     /**
      * Retrieve the Timeout.
-     * 
+     *
      * @return int
      */
     public function getTimeout()
