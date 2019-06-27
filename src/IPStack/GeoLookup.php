@@ -306,10 +306,11 @@ class GeoLookup
 
     /**
      * Get the timeout for connections.
-     * 
+     *
      * @return int
      */
-    public function getTimeout() {
+    public function getTimeout()
+    {
         return $this->timeout;
     }
 
@@ -317,7 +318,7 @@ class GeoLookup
      * Specify the language that the response should be translated into.
      *
      * @param int $value The new language.
-     * 
+     *
      * @see https://ipstack.com/documentation#language
      * @return \IPStack\PHP\GeoLookup
      */
@@ -330,7 +331,7 @@ class GeoLookup
 
     /**
      * Retrieve the currently configured language.
-     * 
+     *
      * @return string
      */
     public function getLanguage()
