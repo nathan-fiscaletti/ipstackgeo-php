@@ -16,7 +16,7 @@ final class GeoLookupTest extends TestCase
 		$geo = new GeoLookup('d0164200acfaa5ad0a154d1a7398bc90');
 		$location = $geo->getLocation('github.com');
 
-		$this->assertInstanceOf(Location::class, $location);
+		$this->assertInternalType('array', $location);
 	}
 
 	public function testGetLocationWithHttpsForReturnsLocationObjectOnInvalidPlan()
@@ -28,7 +28,7 @@ final class GeoLookupTest extends TestCase
 
 		$location = $geo->getLocation('github.com');
 
-		$this->assertInstanceOf(Location::class, $location);
+		$this->assertInternalType('array', $location);
 	}
 
 	public function testGetClientLocationOnUnableToFindClientIp()
@@ -52,6 +52,21 @@ final class GeoLookupTest extends TestCase
 
         $location = $geo->getLocations('1.1.1.1', '2.2.2.2');
 
-        $this->assertInstanceOf(Location::class, $location);
+        $this->assertInternalType('array', $location);
+    }
+
+    public function testGetLocationsBulkRequestReturnsExceptionOnMoreThan50IPs()
+    {
+        $geo = new GeoLookup('d0164200acfaa5ad0a154d1a7398bc90');
+
+        $this->expectException(\Exception::class);
+        $this->expectExceptionmessage('Error: Bulk lookup limitted to 50 IP addresses at a time.');
+
+        $input = [];
+        $count = 51;
+        while ($count--) {
+            $input[] = '1.1.1.1';
+        }
+        $location = $geo->getLocations(...$input);
     }
 }

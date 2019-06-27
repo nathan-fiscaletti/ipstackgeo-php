@@ -51,10 +51,10 @@ class FreeGeoIp
      *
      * @param  string $ip
      *
-     * @return \FreeGeoIp\PHP\Location|null
+     * @return array|null
      * @throws \Exception
      */
-    public function getLocationFor(string $ip)
+    public function getLocation(string $ip)
     {
         $ret = null;
         try {
@@ -63,8 +63,8 @@ class FreeGeoIp
                 'timeout' => $this->timeout,
             ]))->get('json/'.$ip);
             if ($response->getStatusCode() == 200) {
-                $ret = new Location(json_decode(
-                    $response->getBody()->getContents(), true));
+                $ret = json_decode(
+                    $response->getBody()->getContents(), true);
             }
         } catch (\Exception $e) {
             throw $e;
@@ -76,7 +76,7 @@ class FreeGeoIp
     /**
      * Returns a location for the current clients IP address.
      *
-     * @return \FreeGeoIp\PHP\Location
+     * @return array|null
      * @throws \Exception
      */
     public function getClientLocation()
