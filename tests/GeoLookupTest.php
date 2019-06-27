@@ -69,4 +69,13 @@ final class GeoLookupTest extends TestCase
         }
         $location = $geo->getLocations(...$input);
     }
+
+    public function testGetOwnLocationReturnsArray()
+    {
+        $geo = new GeoLookup('d0164200acfaa5ad0a154d1a7398bc90');
+
+		$location = $geo->getOwnLocation();
+
+		$this->assertInternalType('array', $location);
+    }
 }

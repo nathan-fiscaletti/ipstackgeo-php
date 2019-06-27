@@ -15,22 +15,35 @@ Learn more about IPStack here: [ipstack.net](https://ipstack.com/product)
 
 ### Features
 * Retrieve the Geo Location data for any IP address.
-* (Legacy) Link to a custom FreeGeoIP server
+* Retrieve the Geo Location data for the system executing this code.
+* Retrieve the Geo Location data for a client.
+* Retrieve the Geo Location data for a batch of IP addresses.
+* Assess the security of an IP address.
+
+### Legacy Features
+* Link to a custom FreeGeoIP server
+
+---
+
+### Basic Usage
+
+```php
+$geo = new GeoLookup('.....');
+$location = $geo->getLocation('github.com');
+print_r($location);
+```
 
 ### Example Usage
 
-> Note: See [Location.php](https://github.com/nathan-fiscaletti/ipstackgeo-php/blob/v1.4/src/IPStack/Location.php) for a list of available properties on the Location object.
+> Note: See [IPStack: Response Objects](https://ipstack.com/documentation#objects) for a list of available properties in a response object.
 
 #### Create the GeoLookup object
 
 ```php
 use IPStack\PHP\GeoLookup;
 
-$geoLookup = new GeoLookup(
-    'acecac3893c90871c3', // API Key
-    false,                // Use HTTPS (IPStack Basic plan and up only, defaults to false)
-    10                    // Timeout in seconds (defaults to 10 seconds)
-);
+// Create the GeoLookup object using your API key.
+$geoLookup = new GeoLookup('acecac3893c90871c3');
 ```
 
 #### Lookup a location for an IP Address
@@ -60,17 +73,79 @@ try {
 }
 ```
 
-#### Lookup IPs locations in bulk
-
-You can also look up the location for multiple IP addresses at once.
-
-> Note: This requires the PROFESSIONAL teir API key or higher and is limitted to 50 IPs at a time.
+#### Look up a Clients location
 
 ```php
-$lookup = ['google.com', 'github.com', '1.1.1.1'];
-$locations = $geoLookup->getLocations(...$lookup);
-print_r($locations);
+$location = $geoLookup->getClientLocation();
+print_r($location);
 ```
+
+#### Look up own location
+```php
+$location = $geoLookup->getOwnLocation();
+print_r($location);
+```
+
+#### Other Features
+
+There are also a few other useful features built into this library and the IPStack API.
+
+1. Bulk Location Lookup
+
+   The ipstack API also offers the ability to request data for multiple IPv4 or IPv6 addresses at the same time. This requires the PROFESSIONAL teir API key or higher and is limitted to 50 IPs at a time.
+   > See: [https://ipstack.com/documentation#bulk](https://ipstack.com/documentation#bulk)
+
+   ```php
+   $lookup = ['google.com', 'github.com', '1.1.1.1'];
+   $locations = $geoLookup->getLocations(...$lookup);
+   print_r($locations);
+   ```
+
+2. Requesting the hostname for an IP address.
+
+   By default, the ipstack API does not return information about the hostname the given IP address resolves to. In order to include the hostname use the following.
+   > See: [https://ipstack.com/documentation#hostname](https://ipstack.com/documentation#hostname)
+
+   ```php
+   $location = $geoLookup->setFindHostname(true)->getLocation('1.1.1.1');
+   echo $location['hostname'];
+   ```
+
+   ```
+   one.one.one.one
+   ```
+
+3. Assessing Security
+
+   Customers subscribed to the Professional Plus Plan may access the ipstack API's Security Module, which can be used to assess risks and threats originating from certain IP addresses before any harm can be done to a website or web application.
+   > See: [https://ipstack.com/documentation#security](https://ipstack.com/documentation#security)
+
+   ```php
+   $location = $geoLookup->assessSecurity(true)->getLocation('github.com');
+   ```
+
+4. Set the language for a response
+
+   The ipstack API is capable of delivering its result set in different languages. To request data in a language other than English (default) use following with one of the supported language codes.
+   > See: [https://ipstack.com/documentation#language](https://ipstack.com/documentation#language)
+
+   [Supported Langauges](https://ipstack.com/documentation#language)
+
+   ```php
+   $location = $geoLookup->setLanguage('en')->getLocation('github.com');
+   ```
+
+5. Configuring your request
+
+   ```php
+   /// Use HTTPS
+   /// This requires IPStack Basic plan or higher.
+   $location = $geoLookup->useHttps(true)->getLocation('github.com');
+
+   /// Configure the timeout for requests
+   $location = $geoLookup->setTimeout(15)->getLocation('github.com');
+   ```
+
 
 #### Using the the Legacy [FreeGeoIP Binary](https://github.com/fiorix/freegeoip/releases/)
 
