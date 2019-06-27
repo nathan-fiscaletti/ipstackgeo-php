@@ -75,8 +75,6 @@ class GeoLookup
      */
     public function getLocation(string $ip)
     {
-        $ret = null;
-
         try {
             $response = (new Client([
                 'base_uri' => (
@@ -93,19 +91,10 @@ class GeoLookup
                 '&language='.$this->language
             );
 
-            if ($response->getStatusCode() == 200) {
-                $compiled = json_decode($response->getBody()->getContents(), true);
-                if (array_key_exists('error', $compiled)) {
-                    throw new \Exception('Error: '.$compiled['error']['info']);
-                }
-
-                $ret = $compiled;
-            }
+            return $this->processResponse($response);
         } catch (\Exception $e) {
             throw $e;
         }
-
-        return $ret;
     }
 
     /**
@@ -121,8 +110,6 @@ class GeoLookup
         if (\count($ips) > 50) {
             throw new \Exception('Error: Bulk lookup limitted to 50 IP addresses at a time.');
         }
-
-        $ret = null;
 
         try {
             $response = (new Client([
@@ -140,19 +127,10 @@ class GeoLookup
                 '&language='.$this->language
             );
 
-            if ($response->getStatusCode() == 200) {
-                $compiled = json_decode($response->getBody()->getContents(), true);
-                if (array_key_exists('error', $compiled)) {
-                    throw new \Exception('Error: '.$compiled['error']['info']);
-                }
-
-                $ret = $compiled;
-            }
+            return $this->processResponse($response);
         } catch (\Exception $e) {
             throw $e;
         }
-
-        return $ret;
     }
 
     /**
@@ -163,8 +141,6 @@ class GeoLookup
      */
     public function getOwnLocation()
     {
-        $ret = null;
-
         try {
             $response = (new Client([
                 'base_uri' => (
@@ -181,19 +157,29 @@ class GeoLookup
                 '&language='.$this->language
             );
 
-            if ($response->getStatusCode() == 200) {
-                $compiled = json_decode($response->getBody()->getContents(), true);
-                if (array_key_exists('error', $compiled)) {
-                    throw new \Exception('Error: '.$compiled['error']['info']);
-                }
-
-                $ret = $compiled;
-            }
+            return $this->processResponse($response);
         } catch (\Exception $e) {
             throw $e;
         }
+    }
 
-        return $ret;
+    /**
+     * Processes a response to be sent back to the user.
+     *
+     * @param object $response
+     *
+     * @return array|null
+     */
+    private function processResponse($response)
+    {
+        if ($response->getStatusCode() == 200) {
+            $compiled = json_decode($response->getBody()->getContents(), true);
+            if (array_key_exists('error', $compiled)) {
+                throw new \Exception('Error: '.$compiled['error']['info']);
+            }
+
+            return $compiled;
+        }
     }
 
     /**
