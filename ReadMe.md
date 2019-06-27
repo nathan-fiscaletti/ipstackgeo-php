@@ -35,10 +35,6 @@ $geoLookup = new GeoLookup(
 
 #### Lookup a location for an IP Address
 
-> Note: Locations are returned using a library called ExtendedArrays.
-> This library gives us more options on how we access the properties of the location.
-> See the [Acessing Array Elements](https://github.com/nathan-fiscaletti/extended-arrays/blob/master/Examples/Managing%20Arrays.md#accessing-array-elements) portion of the ExtendedArrays documentation for more information on this.
-
 ```php
 // Lookup a location for an IP Address
 // and catch any exceptions that might
@@ -51,27 +47,29 @@ try {
     // or IP addresses.
     $location = $geoLookup->getLocation('github.com');
 
-    // You can alternately look up the information
-    // for the current client's IP address.
-    $location = $geoLookup->getClientLocation();
-
     // If we are unable to retrieve the location information
     // for an IP address, null will be returned.
-    if ($location == null) {
+    if (\is_null($location)) {
         echo 'Failed to find location.'.PHP_EOL;
     } else {
-        // Convert the location to a standard PHP array.
-        print_r($location->_asStdArray());
-
-        // Any of these formats will work for 
-        // retrieving a property.
-        echo $location->latitude . PHP_EOL;
-        echo $location['longitude'] . PHP_EOL;
-        echo $location->region_name() . PHP_EOL;
+        // Print the Location Object.
+        print_r($location);
     }
 } catch (\Exception $e) {
     echo $e->getMessage();
 }
+```
+
+#### Lookup IPs locations in bulk
+
+You can also look up the location for multiple IP addresses at once.
+
+> Note: This requires the PROFESSIONAL teir API key or higher and is limitted to 50 IPs at a time.
+
+```php
+$lookup = ['google.com', 'github.com', '1.1.1.1'];
+$locations = $geoLookup->getLocations(...$lookup);
+print_r($locations);
 ```
 
 #### Using the the Legacy [FreeGeoIP Binary](https://github.com/fiorix/freegeoip/releases/)
