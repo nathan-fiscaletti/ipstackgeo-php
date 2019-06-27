@@ -4,7 +4,6 @@ namespace IPStack\PHP\Tests;
 
 use PHPUnit\Framework\TestCase;
 use IPStack\PHP\GeoLookup;
-use IPStack\PHP\Legacy\FreeGeoIp;
 
 /**
  * @covers \IPStack\PHP\GeoLookup
