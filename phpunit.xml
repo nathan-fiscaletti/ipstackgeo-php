@@ -20,15 +20,12 @@
 
     <filter>
         <whitelist>
-            <directory suffix=".php">src</directory>
+            <file>./src/IPStack/GeoLookup.php</file>
         </whitelist>
-        <exclude>
-            <file>src/IPStack/Legacy/FreeGeoIp.php</file>
-        </exclude>
     </filter>
 
     <logging>
-        <log type="coverage-clover" target="build/logs/clover.xml"/>
+        <log type="coverage-clover" target="./build/logs/clover.xml"/>
     </logging>
 
 </phpunit>
