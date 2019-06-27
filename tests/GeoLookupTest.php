@@ -186,17 +186,4 @@ final class GeoLookupTest extends TestCase
 
         $this->assertInstanceOf(GeoLookup::class, $result);
     }
-
-    public function testLegacyConstructor()
-    {
-        $freeGeoIp = new FreeGeoIp(
-            '127.0.0.1',
-            8081,
-            'https',
-            11
-        );
-
-        $this->assertEquals($freeGeoIp->getServerUrl(), 'https://127.0.0.1:8081/');
-        $this->assertEquals($freeGeoIp->getTimeout(), 11);
-    }
 }
