@@ -35,21 +35,21 @@ class GeoLookup
     /**
      * Whether or not to attempt reverse hostname lookup when
      * looking up location data.
-     * 
+     *
      * @var bool
      */
     private $find_hostname = false;
 
     /**
      * Whether or not to assess the security of an IP address.
-     * 
+     *
      * @var bool
      */
     private $assess_security = false;
 
     /**
      * The language to translate the response into.
-     * 
+     *
      * @var string
      */
     private $language = 'en';
@@ -60,7 +60,8 @@ class GeoLookup
      *
      * @param string $api_key Your IPStack API Key.
      */
-    public function __construct(string $api_key) {
+    public function __construct(string $api_key)
+    {
         $this->api_key = $api_key;
     }
 
@@ -87,8 +88,8 @@ class GeoLookup
             ]))->get(
                 $ip.'?access_key='.$this->api_key.
                 '&output=json'.
-                ($this->find_hostname?'&hostname=1':'').
-                ($this->assess_security?'&security=1':'').
+                ($this->find_hostname ? '&hostname=1' : '').
+                ($this->assess_security ? '&security=1' : '').
                 '&language='.$this->language
             );
 
@@ -134,8 +135,8 @@ class GeoLookup
             ]))->get(
                 implode(',', $ips).'?access_key='.$this->api_key.
                 '&output=json'.
-                ($this->find_hostname?'&hostname=1':'').
-                ($this->assess_security?'&security=1':'').
+                ($this->find_hostname ? '&hostname=1' : '').
+                ($this->assess_security ? '&security=1' : '').
                 '&language='.$this->language
             );
 
@@ -156,7 +157,7 @@ class GeoLookup
 
     /**
      * Retrieve the location information for the system executing this code.
-     * 
+     *
      * @return array|null
      * @throws \Exception
      */
@@ -175,8 +176,8 @@ class GeoLookup
             ]))->get(
                 'check?access_key='.$this->api_key.
                 '&output=json'.
-                ($this->find_hostname?'&hostname=1':'').
-                ($this->assess_security?'&security=1':'').
+                ($this->find_hostname ? '&hostname=1' : '').
+                ($this->assess_security ? '&security=1' : '').
                 '&language='.$this->language
             );
 
@@ -217,7 +218,7 @@ class GeoLookup
      * Set whether or not to attempt reverse hostname lookup when
      * looking up location data.
      *
-     * @var bool $value The new value.
+     * @param bool $value The new value.
      *
      * @see https://ipstack.com/documentation#hostname
      * @return \IPStack\PHP\GeoLookup
@@ -243,7 +244,7 @@ class GeoLookup
     /**
      * Set whether or not to use HTTPS with this connection.
      *
-     * @var bool $value The new value.
+     * @param bool $value The new value.
      *
      * @return \IPStack\PHP\GeoLookup
      */
@@ -267,7 +268,7 @@ class GeoLookup
     /**
      * Set whether or not to assess the security of an IP address.
      *
-     * @var bool $value The new value.
+     * @param bool $value The new value.
      *
      * @see https://ipstack.com/documentation#security
      * @return \IPStack\PHP\GeoLookup
@@ -292,7 +293,7 @@ class GeoLookup
     /**
      * Set the timeout for connections.
      *
-     * @var int $value The new value.
+     * @param int $value The new value.
      *
      * @return \IPStack\PHP\GeoLookup
      */
@@ -304,9 +305,18 @@ class GeoLookup
     }
 
     /**
+     * Get the timeout for connections.
+     * 
+     * @return int
+     */
+    public function getTimeout() {
+        return $this->timeout;
+    }
+
+    /**
      * Specify the language that the response should be translated into.
      *
-     * @var int $value The new language.
+     * @param int $value The new language.
      * 
      * @see https://ipstack.com/documentation#language
      * @return \IPStack\PHP\GeoLookup
@@ -326,14 +336,5 @@ class GeoLookup
     public function getLanguage()
     {
         return $this->language;
-    }
-
-    /**
-     * Get the timeout for connections.
-     * 
-     * @return int
-     */
-    public function getTimeout() {
-        return $this->timeout;
     }
 }
