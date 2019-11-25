@@ -66,6 +66,19 @@ class GeoLookup
     }
 
     /**
+     * Allows IPv6 addresses to be used
+     * 
+     * @param  string $ip The IP to be formatted
+     * @return string
+     */
+    public function formatIp(string $ip) {
+        if (\filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+            return \urlencode($ip);
+        }
+        return $ip;
+    }
+
+    /**
      * Retrieve a location for a specific IP address.
      *
      * @param  string $ip The IP to lookup.
@@ -75,6 +88,8 @@ class GeoLookup
      */
     public function getLocation(string $ip)
     {
+        $ip = $this->formatIp($ip);
+        
         try {
             $response = (new Client([
                 'base_uri' => (
@@ -197,7 +212,7 @@ class GeoLookup
             throw new \Exception('Error: Unable to find client IP address.');
         }
 
-        return $this->getLocationFor($ip);
+        return $this->getLocation($ip);
     }
 
     /**
