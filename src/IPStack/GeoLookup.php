@@ -69,6 +69,7 @@ class GeoLookup
      * Allows IPv6 addresses to be used.
      * 
      * @param  string $ip The IP to be formatted.
+     * 
      * @return string
      */
     public function formatIp(string $ip)
@@ -76,6 +77,7 @@ class GeoLookup
         if (\filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
             return \urlencode($ip);
         }
+        
         return $ip;
     }
 
