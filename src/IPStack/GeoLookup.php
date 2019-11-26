@@ -175,11 +175,11 @@ class GeoLookup
     /**
      * Processes a response to be sent back to the user.
      *
-     * @param GuzzleHttp\Client $response instance of Guzzle Http Client
+     * @param \GuzzleHttp\Psr7\Response $response instance of Guzzle http client response.
      *
      * @return array|null
      */
-    private function processResponse(\GuzzleHttp\Client $response)
+    private function processResponse(\GuzzleHttp\Psr7\Response $response)
     {
         if ($response->getStatusCode() == 200) {
             $compiled = json_decode($response->getBody()->getContents(), true);
