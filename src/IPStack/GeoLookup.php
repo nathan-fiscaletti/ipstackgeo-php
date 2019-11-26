@@ -56,7 +56,6 @@ class GeoLookup
 
     /**
      * Construct the FreeGeoIp object with server information.
-     * Defaults to freegeoip.net.
      *
      * @param string $api_key Your IPStack API Key.
      */
@@ -66,7 +65,8 @@ class GeoLookup
     }
 
     /**
-     * Allows IPv6 addresses to be used.
+     * Determines if an IP address is in the IPv6 format, and if so, URL encodes it, otherwise return the value
+     * without any modifications.
      *
      * @param string $ip The IP to be formatted.
      *
@@ -82,70 +82,24 @@ class GeoLookup
     }
 
     /**
-     * Retrieve a location for a specific IP address.
-     *
-     * @param string $ip The IP to lookup.
-     *
-     * @return array|null
-     * @throws \Exception
-     */
-    public function getLocation(string $ip)
-    {
-        $ip = $this->formatIp($ip);
-
-        return $this->call($ip);
-    }
-
-    /**
-     * Retrieve the location information for a batch of IP addresses.
-     *
-     * @param string ...$ips The IP addresses.
-     *
-     * @todo use array_map to format IPv6 ?
-     *
-     * @return array|null
-     * @throws \Exception
-     */
-    public function getLocations(string ...$ips)
-    {
-        if (\count($ips) > 50) {
-            throw new \Exception('Error: Bulk lookup limitted to 50 IP addresses at a time.');
-        }
-
-        $ips = implode(',', $ips);
-
-        return $this->call($ips);
-    }
-
-    /**
-     * Retrieve the location information for the system executing this code.
-     *
-     * @return array|null
-     * @throws \Exception
-     */
-    public function getOwnLocation()
-    {
-        return $this->call();
-    }
-
-    /**
      * Makes the actual call to IpStack endpoint.
      * Not providing an argument it will look up for own location IP.
+     * 
+     * @param string $ips The comma separated list of IP addresses to lookup.
      *
      * @throws \Exception
      * @return array|null
      */
-    protected function call(/*$ip*/)
+    protected function call(string $ips = null)
     {
         if (empty($this->api_key)) {
             throw new \Exception('Error: API key is missing.');
         }
 
-        // use own location feature
-        if (\func_num_args() == 0) {
+        if (is_null($ips)) {
             $endpoint = 'check';
         } else {
-            $endpoint = \func_get_arg(0);
+            $endpoint = $ips;
         }
 
         try {
@@ -189,6 +143,53 @@ class GeoLookup
 
             return $compiled;
         }
+    }
+
+    /**
+     * Retrieve a location for a specific IP address.
+     *
+     * @param string $ip The IP to lookup.
+     *
+     * @return array|null
+     * @throws \Exception
+     */
+    public function getLocation(string $ip)
+    {
+        return $this->getLocations($ip);
+    }
+
+    /**
+     * Retrieve the location information for a batch of IP addresses.
+     *
+     * @param string ...$ips The IP addresses.
+     *
+     * @return array|null
+     * @throws \Exception
+     */
+    public function getLocations(string ...$ips)
+    {
+        if (\count($ips) > 50) {
+            throw new \Exception('Error: Bulk lookup limitted to 50 IP addresses at a time.');
+        }
+
+        $ips = array_map(function($ip) {
+            return $this->formatIp($ip);
+        }, $ips);
+
+        $ips = implode(',', $ips);
+
+        return $this->call($ips);
+    }
+
+    /**
+     * Retrieve the location information for the system executing this code.
+     *
+     * @return array|null
+     * @throws \Exception
+     */
+    public function getOwnLocation()
+    {
+        return $this->call();
     }
 
     /**
