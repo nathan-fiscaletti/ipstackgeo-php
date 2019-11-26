@@ -84,7 +84,7 @@ class GeoLookup
     /**
      * Makes the actual call to IpStack endpoint.
      * Not providing an argument it will look up for own location IP.
-     * 
+     *
      * @param string $ips The comma separated list of IP addresses to lookup.
      *
      * @throws \Exception
@@ -172,7 +172,7 @@ class GeoLookup
             throw new \Exception('Error: Bulk lookup limitted to 50 IP addresses at a time.');
         }
 
-        $ips = array_map(function($ip) {
+        $ips = array_map(function ($ip) {
             return $this->formatIp($ip);
         }, $ips);
 
