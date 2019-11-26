@@ -69,7 +69,7 @@ class GeoLookup
      * Allows IPv6 addresses to be used.
      *
      * @param string $ip The IP to be formatted.
-     * 
+     *
      * @return string
      */
     public function formatIp(string $ip)
