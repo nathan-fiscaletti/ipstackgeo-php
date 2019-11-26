@@ -1,7 +1,9 @@
 # IPStack for PHP (Geo Location Library)
 > **IPStack for PHP** is a simple library used to interface with an IPStack Geo API.
->
-> **Hint**: IPStack for PHP is available through [Composer](https://getcomposer.org). `composer require nafisc/ipstackgeo-php`.
+
+```
+$ composer require nafisc/ipstackgeo-php
+```
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/2cbb563c1ef04059df2d/maintainability)](https://codeclimate.com/github/nathan-fiscaletti/ipstackgeo-php/maintainability)
 [![StyleCI](https://styleci.io/repos/115560334/shield?style=flat)](https://styleci.io/repos/115560334)
