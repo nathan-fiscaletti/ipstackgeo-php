@@ -93,34 +93,15 @@ class GeoLookup
     {
         $ip = $this->formatIp($ip);
 
-        try {
-            $response = (new Client(
-                [
-                'base_uri' => (
-                    ($this->use_https)
-                        ? 'https'
-                        : 'http'
-                ).'://api.ipstack.com/',
-                'timeout' => $this->timeout,
-                ]
-            ))->get(
-                $ip.'?access_key='.$this->api_key.
-                    '&output=json'.
-                    ($this->find_hostname ? '&hostname=1' : '').
-                    ($this->assess_security ? '&security=1' : '').
-                    '&language='.$this->language
-            );
-
-            return $this->processResponse($response);
-        } catch (\Exception $e) {
-            throw $e;
-        }
+        return $this->call($ip);
     }
 
     /**
      * Retrieve the location information for a batch of IP addresses.
      *
      * @param string ...$ips The IP addresses.
+     *
+     * @todo use array_map to format IPv6 ?
      *
      * @return array|null
      * @throws \Exception
@@ -131,28 +112,9 @@ class GeoLookup
             throw new \Exception('Error: Bulk lookup limitted to 50 IP addresses at a time.');
         }
 
-        try {
-            $response = (new Client(
-                [
-                'base_uri' => (
-                    ($this->use_https)
-                        ? 'https'
-                        : 'http'
-                ).'://api.ipstack.com/',
-                'timeout' => $this->timeout,
-                ]
-            ))->get(
-                implode(',', $ips).'?access_key='.$this->api_key.
-                    '&output=json'.
-                    ($this->find_hostname ? '&hostname=1' : '').
-                    ($this->assess_security ? '&security=1' : '').
-                    '&language='.$this->language
-            );
+        $ips = implode(',', $ips);
 
-            return $this->processResponse($response);
-        } catch (\Exception $e) {
-            throw $e;
-        }
+        return $this->call($ips);
     }
 
     /**
@@ -163,6 +125,29 @@ class GeoLookup
      */
     public function getOwnLocation()
     {
+        return $this->call();
+    }
+
+    /**
+     * Makes the actual call to IpStack endpoint.
+     * Not providing an argument it will look up for own location IP.
+     *
+     * @throws \Exception
+     * @return array|null
+     */
+    protected function call(/*$ip*/)
+    {
+        if (empty($this->api_key)) {
+            throw new \Exception('Error: API key is missing.');
+        }
+
+        // use own location feature
+        if (\func_num_args() == 0) {
+            $endpoint = 'check';
+        } else {
+            $endpoint = \func_get_arg(0);
+        }
+
         try {
             $response = (new Client(
                 [
@@ -174,7 +159,7 @@ class GeoLookup
                 'timeout' => $this->timeout,
                 ]
             ))->get(
-                'check?access_key='.$this->api_key.
+                $endpoint.'?access_key='.$this->api_key.
                     '&output=json'.
                     ($this->find_hostname ? '&hostname=1' : '').
                     ($this->assess_security ? '&security=1' : '').
@@ -190,11 +175,11 @@ class GeoLookup
     /**
      * Processes a response to be sent back to the user.
      *
-     * @param object $response
+     * @param GuzzleHttp\Client $response instance of Guzzle Http Client
      *
      * @return array|null
      */
-    private function processResponse($response)
+    private function processResponse(\GuzzleHttp\Client $response)
     {
         if ($response->getStatusCode() == 200) {
             $compiled = json_decode($response->getBody()->getContents(), true);
@@ -327,7 +312,7 @@ class GeoLookup
     /**
      * Specify the language that the response should be translated into.
      *
-     * @param int $value The new language.
+     * @param string $language The new language.
      *
      * @see    https://ipstack.com/documentation#language
      * @return \IPStack\PHP\GeoLookup
