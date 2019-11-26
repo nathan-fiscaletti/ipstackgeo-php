@@ -71,7 +71,8 @@ class GeoLookup
      * @param  string $ip The IP to be formatted
      * @return string
      */
-    public function formatIp(string $ip) {
+    public function formatIp(string $ip)
+    {
         if (\filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
             return \urlencode($ip);
         }
@@ -81,7 +82,7 @@ class GeoLookup
     /**
      * Retrieve a location for a specific IP address.
      *
-     * @param  string $ip The IP to lookup.
+     * @param string $ip The IP to lookup.
      *
      * @return array|null
      * @throws \Exception
@@ -91,19 +92,21 @@ class GeoLookup
         $ip = $this->formatIp($ip);
         
         try {
-            $response = (new Client([
+            $response = (new Client(
+                [
                 'base_uri' => (
                     ($this->use_https)
                         ? 'https'
                         : 'http'
                 ).'://api.ipstack.com/',
                 'timeout' => $this->timeout,
-            ]))->get(
+                ]
+            ))->get(
                 $ip.'?access_key='.$this->api_key.
-                '&output=json'.
-                ($this->find_hostname ? '&hostname=1' : '').
-                ($this->assess_security ? '&security=1' : '').
-                '&language='.$this->language
+                    '&output=json'.
+                    ($this->find_hostname ? '&hostname=1' : '').
+                    ($this->assess_security ? '&security=1' : '').
+                    '&language='.$this->language
             );
 
             return $this->processResponse($response);
@@ -127,19 +130,21 @@ class GeoLookup
         }
 
         try {
-            $response = (new Client([
+            $response = (new Client(
+                [
                 'base_uri' => (
                     ($this->use_https)
                         ? 'https'
                         : 'http'
                 ).'://api.ipstack.com/',
                 'timeout' => $this->timeout,
-            ]))->get(
+                ]
+            ))->get(
                 implode(',', $ips).'?access_key='.$this->api_key.
-                '&output=json'.
-                ($this->find_hostname ? '&hostname=1' : '').
-                ($this->assess_security ? '&security=1' : '').
-                '&language='.$this->language
+                    '&output=json'.
+                    ($this->find_hostname ? '&hostname=1' : '').
+                    ($this->assess_security ? '&security=1' : '').
+                    '&language='.$this->language
             );
 
             return $this->processResponse($response);
@@ -157,19 +162,21 @@ class GeoLookup
     public function getOwnLocation()
     {
         try {
-            $response = (new Client([
+            $response = (new Client(
+                [
                 'base_uri' => (
                     ($this->use_https)
                         ? 'https'
                         : 'http'
                 ).'://api.ipstack.com/',
                 'timeout' => $this->timeout,
-            ]))->get(
+                ]
+            ))->get(
                 'check?access_key='.$this->api_key.
-                '&output=json'.
-                ($this->find_hostname ? '&hostname=1' : '').
-                ($this->assess_security ? '&security=1' : '').
-                '&language='.$this->language
+                    '&output=json'.
+                    ($this->find_hostname ? '&hostname=1' : '').
+                    ($this->assess_security ? '&security=1' : '').
+                    '&language='.$this->language
             );
 
             return $this->processResponse($response);
@@ -200,7 +207,7 @@ class GeoLookup
     /**
      * Returns a location for the current clients IP address.
      *
-     * @return \FreeGeoIp\PHP\Location
+     * @return array|null
      * @throws \Exception
      */
     public function getClientLocation()
@@ -221,7 +228,7 @@ class GeoLookup
      *
      * @param bool $value The new value.
      *
-     * @see https://ipstack.com/documentation#hostname
+     * @see    https://ipstack.com/documentation#hostname
      * @return \IPStack\PHP\GeoLookup
      */
     public function setFindHostname(bool $value)
@@ -271,7 +278,7 @@ class GeoLookup
      *
      * @param bool $value The new value.
      *
-     * @see https://ipstack.com/documentation#security
+     * @see    https://ipstack.com/documentation#security
      * @return \IPStack\PHP\GeoLookup
      */
     public function assessSecurity(bool $value)
@@ -320,7 +327,7 @@ class GeoLookup
      *
      * @param int $value The new language.
      *
-     * @see https://ipstack.com/documentation#language
+     * @see    https://ipstack.com/documentation#language
      * @return \IPStack\PHP\GeoLookup
      */
     public function setLanguage(string $language)
