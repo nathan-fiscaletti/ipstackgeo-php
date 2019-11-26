@@ -37,9 +37,9 @@ class FreeGeoIp
      */
     public function __construct(
         string $server_address,
-        int    $server_port = 8080,
+        int $server_port = 8080,
         string $server_protocol = 'http',
-        int    $timeout = 10
+        int $timeout = 10
     ) {
         $this->server_url = $server_protocol.'://'
         .$server_address.':'.$server_port.'/';
