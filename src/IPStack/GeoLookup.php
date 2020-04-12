@@ -105,12 +105,12 @@ class GeoLookup
         try {
             $response = (new Client(
                 [
-                'base_uri' => (
-                    ($this->use_https)
-                        ? 'https'
-                        : 'http'
-                ).'://api.ipstack.com/',
-                'timeout' => $this->timeout,
+                    'base_uri' => (
+                        ($this->use_https)
+                            ? 'https'
+                            : 'http'
+                    ).'://api.ipstack.com/',
+                    'timeout' => $this->timeout,
                 ]
             ))->get(
                 $endpoint.'?access_key='.$this->api_key.
