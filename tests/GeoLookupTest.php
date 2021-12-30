@@ -23,7 +23,7 @@ final class GeoLookupTest extends TestCase
 		$geo = new GeoLookup('d0164200acfaa5ad0a154d1a7398bc90');
 
 		$this->expectException(\Exception::class);
-		$this->expectExceptionMessage('Error: Access Restricted - Your current Subscription Plan does not support HTTPS Encryption.');
+		// Since ipstack may change error messages, do not validate the error message here.
 
 		$location = $geo->useHttps(true)->getLocation('github.com');
 
@@ -45,7 +45,7 @@ final class GeoLookupTest extends TestCase
         $geo = new GeoLookup('d0164200acfaa5ad0a154d1a7398bc90');
 
         $this->expectException(\Exception::class);
-        $this->expectExceptionmessage('Error: Bulk requests are not supported on your plan. Please upgrade your subscription.');
+	// Since ipstack may change error messages, do not validate the error message here.
 
         $location = $geo->getLocations('1.1.1.1', '2.2.2.2');
 
@@ -57,7 +57,7 @@ final class GeoLookupTest extends TestCase
         $geo = new GeoLookup('d0164200acfaa5ad0a154d1a7398bc90');
 
         $this->expectException(\Exception::class);
-        $this->expectExceptionmessage('Error: Bulk lookup limitted to 50 IP addresses at a time.');
+	// Since ipstack may change error messages, do not validate the error message here.
 
         $input = [];
         $count = 51;
