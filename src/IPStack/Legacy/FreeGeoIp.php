@@ -30,10 +30,10 @@ class FreeGeoIp
      * Construct the FreeGeoIp object with server information.
      * Defaults to freegeoip.net.
      *
-     * @param string      $server_address
-     * @param int         $server_port
-     * @param string      $server_protocol
-     * @param int         $timeout
+     * @param string $server_address
+     * @param int    $server_port
+     * @param string $server_protocol
+     * @param int    $timeout
      */
     public function __construct(
         string $server_address,
@@ -49,22 +49,26 @@ class FreeGeoIp
     /**
      * Retrieve a location for a specific IP address.
      *
-     * @param  string $ip
+     * @param string $ip
+     *
+     * @throws \Exception
      *
      * @return array|null
-     * @throws \Exception
      */
     public function getLocation(string $ip)
     {
         $ret = null;
+
         try {
             $response = (new Client([
                 'base_uri' => $this->server_url,
-                'timeout' => $this->timeout,
+                'timeout'  => $this->timeout,
             ]))->get('json/'.$ip);
             if ($response->getStatusCode() == 200) {
                 $ret = json_decode(
-                    $response->getBody()->getContents(), true);
+                    $response->getBody()->getContents(),
+                    true
+                );
             }
         } catch (\Exception $e) {
             throw $e;
@@ -76,8 +80,9 @@ class FreeGeoIp
     /**
      * Returns a location for the current clients IP address.
      *
-     * @return array|null
      * @throws \Exception
+     *
+     * @return array|null
      */
     public function getClientLocation()
     {
