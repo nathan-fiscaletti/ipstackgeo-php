@@ -88,6 +88,7 @@ class GeoLookup
      * @param string $ips The comma separated list of IP addresses to lookup.
      *
      * @throws \Exception
+     *
      * @return array|null
      */
     protected function call(string $ips = null)
@@ -150,8 +151,9 @@ class GeoLookup
      *
      * @param string $ip The IP to lookup.
      *
-     * @return array|null
      * @throws \Exception
+     *
+     * @return array|null
      */
     public function getLocation(string $ip)
     {
@@ -163,8 +165,9 @@ class GeoLookup
      *
      * @param string ...$ips The IP addresses.
      *
-     * @return array|null
      * @throws \Exception
+     *
+     * @return array|null
      */
     public function getLocations(string ...$ips)
     {
@@ -184,8 +187,9 @@ class GeoLookup
     /**
      * Retrieve the location information for the system executing this code.
      *
-     * @return array|null
      * @throws \Exception
+     *
+     * @return array|null
      */
     public function getOwnLocation()
     {
@@ -195,8 +199,9 @@ class GeoLookup
     /**
      * Returns a location for the current clients IP address.
      *
-     * @return array|null
      * @throws \Exception
+     *
+     * @return array|null
      */
     public function getClientLocation()
     {
@@ -217,6 +222,7 @@ class GeoLookup
      * @param bool $value The new value.
      *
      * @see    https://ipstack.com/documentation#hostname
+     *
      * @return \IPStack\PHP\GeoLookup
      */
     public function setFindHostname(bool $value)
@@ -267,6 +273,7 @@ class GeoLookup
      * @param bool $value The new value.
      *
      * @see    https://ipstack.com/documentation#security
+     *
      * @return \IPStack\PHP\GeoLookup
      */
     public function assessSecurity(bool $value)
@@ -316,6 +323,7 @@ class GeoLookup
      * @param string $language The new language.
      *
      * @see    https://ipstack.com/documentation#language
+     *
      * @return \IPStack\PHP\GeoLookup
      */
     public function setLanguage(string $language)
