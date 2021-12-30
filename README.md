@@ -17,6 +17,8 @@ Learn more about IPStack here: [ipstack.net](https://ipstack.com/product)
 
 [Looking for the Python version?](https://github.com/nathan-fiscaletti/ipstackgeo-py)
 
+[Looking for the Node.JS version?](https://github.com/nathan-fiscaletti/ipstackgeo-js)
+
 ### Features
 * Retrieve the Geo Location data for any IP address.
 * Retrieve the Geo Location data for the system executing this code.
