@@ -11,7 +11,6 @@ $ composer require nafisc/ipstackgeo-php
 [![CircleCI](https://circleci.com/gh/nathan-fiscaletti/ipstackgeo-php.svg?style=svg)](https://circleci.com/gh/nathan-fiscaletti/ipstackgeo-php)
 [![Coverage Status](https://coveralls.io/repos/github/nathan-fiscaletti/ipstackgeo-php/badge.svg)](https://coveralls.io/github/nathan-fiscaletti/ipstackgeo-php)
 [![Latest Stable Version](https://poser.pugx.org/nafisc/ipstackgeo-php/v/stable?format=flat)](https://packagist.org/packages/nafisc/ipstackgeo-php)
-[![Total Downloads](https://poser.pugx.org/nafisc/ipstackgeo-php/downloads?format=flat)](https://packagist.org/packages/nafisc/ipstackgeo-php)
 [![License](https://poser.pugx.org/nafisc/ipstackgeo-php/license?format=flat)](https://packagist.org/packages/nafisc/ipstackgeo-php)
 
 Learn more about IPStack here: [ipstack.net](https://ipstack.com/product)
