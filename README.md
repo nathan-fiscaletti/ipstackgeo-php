@@ -5,6 +5,7 @@
 $ composer require nafisc/ipstackgeo-php
 ```
 
+[![Sponsor Me!](https://img.shields.io/badge/%F0%9F%92%B8-Sponsor%20Me!-blue)](https://github.com/sponsors/nathan-fiscaletti)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2cbb563c1ef04059df2d/maintainability)](https://codeclimate.com/github/nathan-fiscaletti/ipstackgeo-php/maintainability)
 [![StyleCI](https://styleci.io/repos/115560334/shield?style=flat)](https://styleci.io/repos/115560334)
 [![CircleCI](https://circleci.com/gh/nathan-fiscaletti/ipstackgeo-php.svg?style=svg)](https://circleci.com/gh/nathan-fiscaletti/ipstackgeo-php)
